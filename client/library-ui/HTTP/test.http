@@ -1,13 +1,13 @@
-@url = https://goodreads12.p.rapidapi.com/
+@url = https://book-finder1.p.rapidapi.com/api/
 @url2 = http://localhost:8080/api/books
 
 ###
-GET {{url}}searchBooks?keyword=test HTTP/1.1
+GET {{url}}search?title=test&results_per_page=25&page=1 HTTP/1.1
 Accept: application/json
 Content-Type: application/json
 x-rapidapi-ua: RapidAPI-Playground
 x-rapidapi-key: 21962f3e6dmshc4f1e77bf20a012p160e93jsn6a9382cfb62c
-x-rapidapi-host: goodreads12.p.rapidapi.com
+x-rapidapi-host: book-finder1.p.rapidapi.com
 specificMethodHeaders: [object Object]
 
 {}
@@ -18,8 +18,7 @@ Accept: application/json
 Content-Type: application/json
 x-rapidapi-ua: RapidAPI-Playground
 x-rapidapi-key: 21962f3e6dmshc4f1e77bf20a012p160e93jsn6a9382cfb62c
-x-rapidapi-host: goodreads12.p.rapidapi.com
-specificMethodHeaders: [object Object]
+
 
 {}
 ###

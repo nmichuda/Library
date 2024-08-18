@@ -81,8 +81,8 @@ public class BookTemplateRepository implements BookRepository{
     @Override
     public Book add(Book book) {
 
-        final String sql = "insert into books (book_title, book_isbn, author_id, image_link) "
-                + "values(?,?,?,?) ;";
+        final String sql = "insert into books (book_title, book_isbn, author_id, image_link, book_description) "
+                + "values(?,?,?,?,?) ;";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
@@ -91,6 +91,7 @@ public class BookTemplateRepository implements BookRepository{
             ps.setString(2,book.getIsbn());
             ps.setInt(3,book.getAuthorId());
             ps.setString(4,book.getImageUrl());
+            ps.setString(5,book.getDescription());
 
             return ps;
         }, keyHolder);
@@ -110,12 +111,14 @@ public class BookTemplateRepository implements BookRepository{
                 + "book_title = ?, "
                 + "book_isbn = ?, "
                 + "author_id = ?, "
+                + "book_description = ?, "
                 + "image_link = ?, ;";
 
         boolean updated = jdbcTemplate.update(sql,
                 book.getBookTitle(),
                 book.getIsbn(),
                 book.getAuthorId(),
+                book.getDescription(),
                 book.getImageUrl()
 
         ) > 0;

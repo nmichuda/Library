@@ -13,9 +13,12 @@ public class Book {
 
     private String isbn;
 
+    private String description;
+
     private int authorId;
 
     private String imageUrl;
+
 
 
     public Book(){
@@ -23,12 +26,21 @@ public class Book {
     }
 
 
-    public Book(int authorId, int bookId, String bookTitle, String imageUrl, String isbn) {
+    public Book(int authorId, int bookId, String bookTitle, String imageUrl, String isbn, String description) {
         this.authorId = authorId;
         this.bookId = bookId;
         this.bookTitle = bookTitle;
         this.imageUrl = imageUrl;
         this.isbn = isbn;
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 
