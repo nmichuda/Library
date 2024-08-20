@@ -32,10 +32,10 @@ insert into tags (tag_name)
     ('Romance'),
     ('Fantasy');
     
-insert into books (book_title,book_isbn,author_id,image_link)
+insert into books (book_title,book_isbn,author_id,image_link,book_description,user_id,author,time_added)
 	values
-    ('Test book 1', '9781639730193', 1, '' ),
-    ('Test book 2', '9781639730192', 2, '' );
+    ('Test book 1', '9781639730193', 1, '', 'its a book', 1, "George", '2024-08-07 16:00:00' ),
+    ('Test book 2', '9781639730192', 2, '', 'yet again, a book', 2, "Carl", '2024-08-07 16:00:00');
     
 insert into user_books (user_id, book_id, status)
 values

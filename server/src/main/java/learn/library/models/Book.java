@@ -1,6 +1,7 @@
 package learn.library.models;
 
 import javax.validation.constraints.*;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Book {
@@ -19,6 +20,14 @@ public class Book {
 
     private String imageUrl;
 
+    private int userId;
+
+    private String author;
+
+    private LocalDate timeAdded;
+
+    private String status;
+
 
 
     public Book(){
@@ -26,13 +35,49 @@ public class Book {
     }
 
 
-    public Book(int authorId, int bookId, String bookTitle, String imageUrl, String isbn, String description) {
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public LocalDate getTimeAdded() {
+        return timeAdded;
+    }
+
+    public void setTimeAdded(LocalDate timeAdded) {
+        this.timeAdded = timeAdded;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Book(int authorId, int bookId, String bookTitle, String imageUrl, String isbn, String description, int userId, String author, LocalDate timeAdded, String status) {
         this.authorId = authorId;
         this.bookId = bookId;
         this.bookTitle = bookTitle;
         this.imageUrl = imageUrl;
         this.isbn = isbn;
         this.description = description;
+        this.userId = userId;
+        this.author = author;
+        this.timeAdded = timeAdded;
+        this.status = status;
     }
 
     public String getDescription() {

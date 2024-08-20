@@ -27,6 +27,11 @@ public class BookController {
         return service.findAll();
     }
 
+    @GetMapping("/{userId}")
+    public List<Book> findByUser(@PathVariable int userId){
+        return service.findByUserId(userId);
+    }
+
     @PostMapping
     public ResponseEntity<Object> add(@RequestBody Book book){
         Result<Book> result = service.add(book);
@@ -36,5 +41,27 @@ public class BookController {
 
         return ErrorResponse.build(result);
 
+    }
+    @PutMapping("/{bookId}")
+    public ResponseEntity<Object> update(@PathVariable int bookId, @RequestBody Book book){
+        if(bookId != book.getBookId()){
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+
+        Result<Book> result = service.update(book);
+
+        if(result.isSuccess()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return ErrorResponse.build(result);
+    }
+
+    @DeleteMapping("/{bookId}")
+    public ResponseEntity<Void> deleteById(@PathVariable int bookId) {
+        if(service.deleteById(bookId)){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

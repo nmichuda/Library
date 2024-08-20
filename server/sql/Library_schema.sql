@@ -45,8 +45,13 @@ create table books (
 	book_id int primary key auto_increment,
     book_title varchar(100) not null,
     book_isbn varchar(13),
+    book_description varchar(3000),
+    book_status varchar(20),
     author_id int,
     image_link varchar(300),
+    author varchar(100),
+    time_added datetime,
+    user_id int,
     constraint fk_books_author
     foreign key (author_id)
     references authors(author_id)

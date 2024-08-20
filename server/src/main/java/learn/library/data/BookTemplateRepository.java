@@ -6,10 +6,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -81,8 +84,8 @@ public class BookTemplateRepository implements BookRepository{
     @Override
     public Book add(Book book) {
 
-        final String sql = "insert into books (book_title, book_isbn, author_id, image_link, book_description) "
-                + "values(?,?,?,?,?) ;";
+        final String sql = "insert into books (book_title, book_isbn, author_id, image_link, book_description, user_id, author, time_added, book_status) "
+                + "values(?,?,?,?,?,?,?,?,?) ;";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
@@ -92,6 +95,10 @@ public class BookTemplateRepository implements BookRepository{
             ps.setInt(3,book.getAuthorId());
             ps.setString(4,book.getImageUrl());
             ps.setString(5,book.getDescription());
+            ps.setInt(6,book.getUserId());
+            ps.setString(7,book.getAuthor());
+            ps.setDate(8, Date.valueOf(LocalDate.now()));
+            ps.setString(9,book.getStatus());
 
             return ps;
         }, keyHolder);
@@ -105,6 +112,7 @@ public class BookTemplateRepository implements BookRepository{
     }
 
     @Override
+    @Transactional
     public boolean update(Book book) {
 
         final String sql = "update books set "
@@ -112,14 +120,24 @@ public class BookTemplateRepository implements BookRepository{
                 + "book_isbn = ?, "
                 + "author_id = ?, "
                 + "book_description = ?, "
-                + "image_link = ?, ;";
+                + "author = ?, "
+                + "time_added = ?, "
+                + "book_status = ?, "
+                + "user_id = ?, "
+                + "image_link = ? "
+                + "where book_id = ?";
 
         boolean updated = jdbcTemplate.update(sql,
                 book.getBookTitle(),
                 book.getIsbn(),
                 book.getAuthorId(),
                 book.getDescription(),
-                book.getImageUrl()
+                book.getAuthor(),
+                book.getTimeAdded(),
+                book.getStatus(),
+                book.getUserId(),
+                book.getImageUrl(),
+                book.getBookId()
 
         ) > 0;
 

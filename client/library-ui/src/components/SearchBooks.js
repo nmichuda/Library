@@ -30,6 +30,10 @@ function SearchBooks() {
         updatedBook.bookTitle = selected.title;
         updatedBook.imageUrl = `https://covers.openlibrary.org/b/isbn/${selected.canonical_isbn}-M.jpg`;
         updatedBook.isbn = selected.canonical_isbn;
+        updatedBook.description = selected.summary;
+        updatedBook.userId = currentUser;
+        updatedBook.author = selected.authors[0];
+        updatedBook.status = "Not Started";
         
 
         const init = {
@@ -51,7 +55,7 @@ function SearchBooks() {
         .then(data => {
             if (data.bookId) {
                 setBook(BOOK_DEFAULT);
-                navigate('/')
+                //navigate('/')
             } else {
                 console.log(data);
             }

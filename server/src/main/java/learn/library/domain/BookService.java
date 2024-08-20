@@ -60,6 +60,10 @@ public class BookService {
             result.addMessage("bookID cannot be set for `add` operation", ResultType.INVALID);
             return result;
         }
+        if(repository.findByISBN(book.getIsbn())!= null && repository.findByISBN(book.getIsbn()).getUserId() == book.getUserId()){
+            result.addMessage("book already in list!", ResultType.INVALID);
+            return result;
+        }
 
 
         book = repository.add(book);
@@ -92,5 +96,9 @@ public class BookService {
         }
 
         return result;
+    }
+
+    public boolean deleteById(int bookId) {
+        return repository.delete(bookId);
     }
 }
