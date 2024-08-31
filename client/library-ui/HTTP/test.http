@@ -1,6 +1,7 @@
 @url = https://book-finder1.p.rapidapi.com/api/
-@url2 = http://localhost:8080/api/books
+@url2 = http://localhost:8080/books
 
+@url3 = http://18.218.229.189:8080/books/3
 ###
 GET {{url}}search?title=test&results_per_page=25&page=1 HTTP/1.1
 Accept: application/json
@@ -22,10 +23,11 @@ x-rapidapi-key: 21962f3e6dmshc4f1e77bf20a012p160e93jsn6a9382cfb62c
 
 {}
 ###
-GET {{url2}} HTTP/1.1
+GET {{url3}} HTTP/1.1
+
 
 ###
-POST {{url}} HTTP/1.1
+POST {{url3}} HTTP/1.1
 Content-Type: application/json
 
 {

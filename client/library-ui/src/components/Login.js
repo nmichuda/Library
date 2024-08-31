@@ -61,13 +61,13 @@ const Login = (props) => {
     };
     fetch(url, init).then((response) => {
       if (response.status === 403) {
-        console.log(response);
+       // console.log(response);
         setPasswordError("Incorrect username/password.");
         return;
       } else {
         response.json().
         then((data) => {
-          console.log(data);
+        // console.log(data);
           props.setToken(data.jwt_token);
           localStorage.setItem('token',data.jwt_token);
           localStorage.setItem('user_id',data.user_id);

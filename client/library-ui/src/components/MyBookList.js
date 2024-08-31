@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import TextTruncate from "react-text-truncate";
+
 import "./MyBookList.css";
-import { render } from "@testing-library/react";
-import Dropdown from 'react-bootstrap/Dropdown';
 import { DropdownButton, DropdownItem } from "react-bootstrap";
 
 

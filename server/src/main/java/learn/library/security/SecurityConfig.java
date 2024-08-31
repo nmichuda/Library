@@ -23,7 +23,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.converter = converter;
     }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
